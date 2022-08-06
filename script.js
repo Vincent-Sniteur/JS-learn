@@ -450,6 +450,213 @@ console.log(moyenneEleveInClass(eleve2.note)); // On affiche la fonction moyenne
 // END LES FONCTIONS / FUNCTIONS
 //-----------------------------------------------------------------------------------------------
 
+// DOM https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577476-accedez-aux-elements-du-dom
 
 
+
+// DOM = Document Object Model = représentation d'une page web
+// permet de manipuler les éléments HTML et CSS de la page par du JS
+// le DOM est comme un arbre pour accéder à chaque élément HTML
+// Commence toujours par l'élément racine la balise html ( <html> ) avec des enfants ( <body> ) et ( <head> )
+
+// La modification du contenu d'un élément précis ;
+// La création ou suppréssion d'un élément
+// La modification du style d'un élément 
+// L'interaction avec les utilisateurs, afin de repérer des clics sur un élément ou encore de récupérer leur nom dans un formulaire ;
+
+// Document = objet représentant la page web ( DOM )
+// Contient tous les éléments HTML de la page web
+
+// Exemple page <p id="monId">Helloooo </p>
+const myAnchor = document.getElementById("monId");
+document.getElementById("monId").innerHTML = "Hello World"; // On modifie le contenu de l'élément ayant l'id "monId"
+document.getElementById("monId").style.color = "red"; // On modifie le style de l'élément ayant l'id "monId"
+document.getElementById("monId").style.backgroundColor = "blue"; // On modifie le style de l'élément ayant l'id "monId"
+document.getElementById("monId").style.fontSize = "20px"; // On modifie le style de l'élément ayant l'id "monId"
+document.getElementById("monId").style.fontWeight = "bold"; // On modifie le style de l'élément ayant l'id "monId"
+document.getElementById("monId").style.textAlign = "center"; // On modifie le style de l'élément ayant l'id "monId"
+document.getElementById("monId").style.backgroundImage = "url('https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png')"; // On modifie le style de l'élément ayant l'id "monId"
+
+// etc... https://developer.mozilla.org/fr/docs/Web/API/Document/getElementById
+
+// Exemple page <section class="maClass">Helloooo </section>
+
+document.getElementsByClassName("maClass") // On récupère tous les éléments ayant la classe "maClass"
+document.getElementsByClassName("maClass")[0].innerHTML = "Hello World"; // On modifie le contenu de l'élément ayant la class "maClass" ( 0 = premier élément )
+document.getElementsByClassName("maClass")[0].style.color = "red"; // On modifie le style de l'élément ayant la class "maClass"
+
+// etc... https://developer.mozilla.org/fr/docs/Web/API/Document/getElementsByClassName
+
+
+// Exemple page <article> Helloooo </article>
+
+document.getElementsByTagName("article") // On récupère tous les éléments ayant le tag "article"
+document.getElementsByTagName("article")[0].innerHTML = "Hello World"; // On modifie le contenu de l'élément ayant le tag "article" ( 0 = premier élément )
+
+// etc... https://developer.mozilla.org/fr/docs/Web/API/Document/getElementsByTagName
+
+// Exemplu page <div class="maClass">Helloooo </div>
+
+document.querySelector("div.maClass") // On récupère l'élément ayant la classe "maClass"
+
+/** 
+<div id="myId">
+    <p>
+        <span><a href="#">Lien 1</a></span>
+        <a href="#">Lien 2</a>
+        <span><a href="#">Lien 3</a></span>
+    </p>
+    <p class="article">
+        <span><a href="#">Lien 4</a></span>
+        <span><a href="#">Lien 5</a></span>
+        <a href="#">Lien 6</a>
+    </p>
+    <p>
+        <a href="#">Lien 7</a>
+        <span><a href="#">Lien 8</a></span>
+        <span><a href="#">Lien 9</a></span>
+    </p>
+</div>
+ */ 
+
+document.querySelector("#myId p.article < a") // On récupère tous les éléments ayant le tag "a" dans l'élément ayant l'id "myId" et la classe "article"
+// Récupére information du lien 6
+
+// querySelector() : retourne l'élément premier qui correspond à la requête
+// querySelectorAll() : retourne un tableau d'éléments qui correspondent à la requête
+// querySelector(<requête>) : retourne l'élément qui correspond à la requête ( premier )
+
+// etc ... https://developer.mozilla.org/fr/docs/Web/API/Document/querySelector
+
+
+
+
+// Recherche depuis ELEMENT
+
+/* EXEMPLE CODE
+
+<div id="parent">
+    <div id="previous">Précédent</div>
+    <div id="main">
+        <p>Paragraphe 1</p>
+        <p>Paragraphe 2</p>
+    </div>
+    <div id="next">Suivant</div>
+</div>
+
+*/
+const elt = document.getElementById("main") // On récupère l'élément ayant l'id "main"
+element.children // On récupère tous les enfants de l'élément ( la il aurait donner un tableau avec les éléments <p> de MAIN )
+element.parentElement // On récupère l'élément parent de l'élément ( le DIV ayant l'id "parent" )
+element.previousElementSibling // On récupère l'élément précédent de l'élément ( le DIV ayant l'id "previous" )
+element.nextElementSibling // On récupère l'élément suivant de l'élément ( le DIV ayant l'id "next" )
+
+// peut utiliser ELT a la place de element au dessus du coup.
+// etc... https://developer.mozilla.org/fr/docs/Web/API/Element/children
+
+
+//-----------------------------------------------------------------------------------------------
+// MODIFIER DOM = https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577491-modifiez-le-dom
+
+
+
+// add input
+
+
+
+
+
+
+// Add item in array book https://next.tech/projects/5e4f9144-78ef-41a6-b266-85a97defdfb6?access_token=2B5BF0CF31252A75A947982E017B72FE&internal=false
+export class Book {
+  constructor(title, author, description, pages, currentPage, read){
+  this.title = title;
+  this.author = author;
+  this.description = description;
+  this.pages = pages;
+  this.currentPage = currentPage;
+  this.read = read;
+  }
+
+  readBook(page){
+    if(page < 1 || page > this.pages)
+    return 0;
+
+    if(page > 0 && page < this.pages){
+      this.currentPage = page;
+      return 1;
+    }
+
+    if(page == this.pages){
+      this.currentPage = page;
+      this.read = true;
+      return 1;
+    }
+  }
+}
+
+const livre1 = new Book("Terre de feu", "Bernard", "Par dela l'horison", 100, 1, false);
+const livre2 = new Book("Terre de mer", "Claude", "Par dela ta mer", 50, 1, false);
+const livre3 = new Book("Terre de terre", "Gérard", "Par dela la terre", 75, 1, false);
+
+export const books = [livre1, livre2, livre3];
+
+
+
+// EVENT LISTENER & ADD INFOS TO THE DOM
+// Retrieve data and display it in the DOM via eventListener
+// CODE : https://codepen.io/vincent-sniteur/pen/YzarbKo
+
+// get name & add it to the DOM to res-name
+document
+  .getElementById("name")
+  .addEventListener("input", function(e) {
+    document
+      .getElementById("res-name")
+      .innerText = e.target.value;
+});
+
+// get gender & add it to the DOM to res-gender
+document
+  .getElementById("gender")
+  .addEventListener("change", function(e) {
+    document
+      .getElementById("res-gender")
+      .innerText = e.target.value;
+});
+
+// get mouse position & add to the DOM via id mouse-x & mouse-y
+document
+  .getElementById("result")
+  .addEventListener("mousemove", function(e) {
+    document
+      .getElementById("mouse-x")
+      .innerText = e.offsetX;
+    document
+      .getElementById("mouse-y")
+      .innerText = e.offsetY;
+});
+
+// Protocoles / API & Web Services
+SMTP = Simple Mail Transfer Protocol = protocole de transfert de mail
+HTTP = Hypertext Transfer Protocol = discuter avec un service web
+HTTPS = Hypertext Transfer Protocol Secure = discuter avec un service web sécurisé
+FPT = File Protocol = protocole de transfert de fichier
+
+HTTP = requête, chargement page web HTML, CSS... etc  
+
+// https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP
+Envoyer et récupérer des données + code de statut HTTP
+200 à 299 = succès
+300 à 399 = redirection
+400 à 499 = erreur client
+500+ = erreur serveur
+
+Les méthodes HTTP :
+GET = récupérer des données
+POST = envoyer des données
+PUT = mettre à jour des données
+DELETE = supprimer des données
+
+API = Application Programming Interface = interface d'application
 
